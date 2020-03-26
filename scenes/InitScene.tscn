@@ -1,8 +1,109 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Visualizer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/ShaderGrow.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ShaderCircle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/InitScene.gd" type="Script" id=4]
 
 [node name="InitScene" type="Node2D"]
+script = ExtResource( 4 )
+circle_scene = ExtResource( 3 )
 
 [node name="Visualizer" parent="." instance=ExtResource( 1 )]
 position = Vector2( 512, 288 )
+
+[node name="Shader" parent="." instance=ExtResource( 2 )]
+margin_left = 1.29236
+margin_top = -1.29236
+margin_right = 1024.29
+margin_bottom = 582.708
+
+[node name="ShaderCircle" parent="." instance=ExtResource( 3 )]
+visible = false
+margin_bottom = 576.0
+
+[node name="HudOptions" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CircleRadius" type="HSlider" parent="HudOptions"]
+margin_left = 300.0
+margin_top = 475.0
+margin_right = 800.0
+margin_bottom = 491.0
+max_value = 1.0
+step = 0.01
+value = 0.1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GlowRadius" type="HSlider" parent="HudOptions"]
+margin_left = 300.0
+margin_top = 500.0
+margin_right = 800.0
+margin_bottom = 520.0
+max_value = 10.0
+step = 0.05
+value = 3.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GlowAmount" type="HSlider" parent="HudOptions"]
+margin_left = 300.0
+margin_top = 525.0
+margin_right = 800.0
+margin_bottom = 541.0
+max_value = 5.0
+step = 0.05
+value = 0.85
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HudOptions"]
+margin_left = 175.0
+margin_top = 475.0
+margin_right = 263.0
+margin_bottom = 489.0
+text = "Circle - radius"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="HudOptions"]
+margin_left = 175.0
+margin_top = 500.0
+margin_right = 263.0
+margin_bottom = 514.0
+text = "Glow - raidus"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="HudOptions"]
+margin_left = 175.0
+margin_top = 525.0
+margin_right = 269.0
+margin_bottom = 539.0
+text = "Glow - amount"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.81
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+position = Vector2( 0, 1.36038 )
+points = PoolVector2Array( 0, 0, 1024, 576, 1024, 0, 0, 576 )
+[connection signal="value_changed" from="HudOptions/CircleRadius" to="." method="_on_CircleRadius_value_changed"]
+[connection signal="value_changed" from="HudOptions/GlowRadius" to="." method="_on_GlowRadius_value_changed"]
+[connection signal="value_changed" from="HudOptions/GlowAmount" to="." method="_on_GlowAmount_value_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

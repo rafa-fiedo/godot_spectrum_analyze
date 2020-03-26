@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://shaders/WhiteFog.shader" type="Shader" id=1]
+[ext_resource path="res://resources/alpha_texture.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Shader.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/radius = 2.0
+shader_param/amount = 0.85
+
+[node name="Shader" type="TextureRect"]
+material = SubResource( 1 )
+anchor_left = -0.004
+anchor_right = -0.004
+margin_left = -1.904
+margin_top = -1.0
+margin_right = 1038.1
+margin_bottom = 583.0
+texture = ExtResource( 2 )
+expand = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="."]
+visible = false
+margin_left = 230.0
+margin_top = 450.0
+margin_right = 805.0
+margin_bottom = 500.0
+max_value = 10.0
+step = 0.05
+value = 2.0
+
+[node name="HSlider2" type="HSlider" parent="."]
+visible = false
+margin_left = 230.0
+margin_top = 515.0
+margin_right = 805.0
+margin_bottom = 565.0
+max_value = 10.0
+step = 0.05
+value = 0.85
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="."]
+visible = false
+margin_left = 158.752
+margin_top = 476.554
+margin_right = 229.752
+margin_bottom = 540.554
+pressed = true
+text = "On"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="HSlider2" to="." method="_on_HSlider2_value_changed"]
+[connection signal="toggled" from="CheckBox" to="." method="_on_CheckBox_toggled"]

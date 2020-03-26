@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/KingAndPigs - basic.ogg-227610d378ad54708fd38da2c6572994.oggstr"
+
+[deps]
+
+source_file="res://resources/sounds/KingAndPigs - basic.ogg"
+dest_files=[ "res://.import/KingAndPigs - basic.ogg-227610d378ad54708fd38da2c6572994.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
